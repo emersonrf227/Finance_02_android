@@ -12,7 +12,7 @@ import br.com.ilikeweb.emerson.R
 
 class LancamentoFragment : BaseFragment() {
     override fun getTitulo(): Int {
-        return R.string.title_notifications
+        return R.string.title_dashboard
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -25,3 +25,4 @@ class LancamentoFragment : BaseFragment() {
 
 
 }
+
