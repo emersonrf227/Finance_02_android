@@ -9,6 +9,7 @@ import br.com.ilikeweb.emerson.Fragment.LancamentoFragment
 import br.com.ilikeweb.emerson.Fragment.PagamentoFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 @SuppressLint("Registered")
 class MainActivity : AppCompatActivity() {
 
