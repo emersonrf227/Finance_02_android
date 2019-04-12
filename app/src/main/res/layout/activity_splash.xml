@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#ffa500"
+              android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:background="#38c172"
               android:orientation="vertical">
 
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="150dp"
-            android:src="@drawable/ic_launcher_background" />
+
+
+
 
     <TextView
             android:layout_width="match_parent"
@@ -19,5 +16,15 @@
             android:text="Finance"
             android:textColor="#fff"
             android:textSize="30dp" />
+
+
+
+    <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:lottie_fileName="loading.json"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true" />
 
 </LinearLayout>
