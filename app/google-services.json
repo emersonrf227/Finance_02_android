@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "614999558643",
+    "firebase_url": "https://finance-dcdbe.firebaseio.com",
+    "project_id": "finance-dcdbe",
+    "storage_bucket": "finance-dcdbe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614999558643:android:66e667284a2e41ae",
+        "android_client_info": {
+          "package_name": "br.com.ilikeweb.emerson"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614999558643-6cvigb01gnu72ndjap6cnfssl9nfdmdd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.ilikeweb.emerson",
+            "certificate_hash": "cd1aebc28e7349c8c6907251e22e552812a200b3"
+          }
+        },
+        {
+          "client_id": "614999558643-1mg7r9ob20dqaquh68dft1uiho9915pa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-nB0WkCexaayW5r7IwQDL-8Eh5CGsU-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614999558643-1mg7r9ob20dqaquh68dft1uiho9915pa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
