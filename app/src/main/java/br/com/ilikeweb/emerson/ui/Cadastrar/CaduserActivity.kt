@@ -113,11 +113,11 @@ class CaduserActivity : AppCompatActivity() {
                     intent.putExtra("email", etEmail.text.toString())
                     intent.putExtra("senha", etSenha.text.toString())
                     setResult(Activity.RESULT_OK, intent)
-                    //finish()
-
-                    val intent2 = Intent(applicationContext, LoginActivity::class.java)
-                    startActivity(intent2)
                     finish()
+
+                   // val intent2 = Intent(applicationContext, LoginActivity::class.java)
+                   // startActivity(intent2)
+                   // finish()
 
                 } else {
 
