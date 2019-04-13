@@ -17,6 +17,8 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -33,25 +35,46 @@ class LoginActivity : AppCompatActivity() {
 
         btLogin.setOnClickListener {
 
-
-            mAuth.signInWithEmailAndPassword(
-                etNome.text.toString(),
-                etSenha.text.toString()
-
-            ).addOnCompleteListener {
-
-                if (it.isSuccessful) {
-
-                    vaiParaTelaMenu()
+            var txtLogin = etNome.text.toString()
+            var txtPassword = etSenha.text.toString()
 
 
-                } else {
+            if (txtLogin == "") {
 
-                    Toast.makeText(this@LoginActivity, it.exception?.message,
-                        Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Campo E-mail em branco", Toast.LENGTH_LONG).show()
+            return@setOnClickListener
+            }
+
+            if (txtPassword == "") {
+
+                Toast.makeText(this, "Campo Password em branco", Toast.LENGTH_LONG).show()
+            return@setOnClickListener
+            }
+
+
+
+
+
+                mAuth.signInWithEmailAndPassword(
+                    etNome.text.toString(),
+                    etSenha.text.toString()
+
+                ).addOnCompleteListener {
+
+                    if (it.isSuccessful) {
+
+                        vaiParaTelaMenu()
+
+
+                    } else {
+
+                        Toast.makeText(
+                            this@LoginActivity, it.exception?.message,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
-        }
 
 
 

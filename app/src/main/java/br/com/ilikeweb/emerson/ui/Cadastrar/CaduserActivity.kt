@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import br.com.ilikeweb.emerson.R
 import br.com.ilikeweb.emerson.model.Usuario
+import br.com.ilikeweb.emerson.ui.Login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_caduser.*
@@ -29,24 +30,68 @@ class CaduserActivity : AppCompatActivity() {
 
 
         btCadastrar.setOnClickListener {
-            mAuth.createUserWithEmailAndPassword(
 
-                etEmail.text.toString(), //aqui associa o usuario com a senha no firebase
-                etSenha.text.toString()  //aqui envia a senha para  o firebase
+            var  txtEmail = etEmail.text.toString()
+            var txtPassword = etSenha.text.toString()
+            var txtNome = etNome.text.toString()
+            var quantTxtPassword = txtPassword.length
 
 
-            ).addOnCompleteListener {
-                if (it.isSuccessful) {
+            if (txtNome == "") {
 
-                    salvaNoRealtimeDatabase()
+                Toast.makeText(this, "Campo nome em branco", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+            else if (txtEmail == "") {
 
-                } else {
+                Toast.makeText(this, "Campo e-mail em branco", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            } else if (txtPassword == "") {
 
-                    Toast.makeText(this@CaduserActivity,
-                        it.exception?.message,
-                        Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Campo password em branco", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
 
-                }
+                else if (quantTxtPassword <= 8) {
+
+                Toast.makeText(this, "Seu password precisa ter acima de 8 dígitos", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+
+
+            else
+
+            {
+
+                createUser()
+
+            }
+
+
+        }
+
+
+    }
+
+    private fun createUser() {
+        mAuth.createUserWithEmailAndPassword(
+
+            etEmail.text.toString(), //aqui associa o usuario com a senha no firebase
+            etSenha.text.toString()  //aqui envia a senha para  o firebase
+
+
+        ).addOnCompleteListener {
+            if (it.isSuccessful) {
+
+                salvaNoRealtimeDatabase()
+
+            } else {
+
+                Toast.makeText(this@CaduserActivity,
+                    it.exception?.message,
+                    Toast.LENGTH_LONG).show()
+
             }
         }
     }
@@ -68,6 +113,10 @@ class CaduserActivity : AppCompatActivity() {
                     intent.putExtra("email", etEmail.text.toString())
                     intent.putExtra("senha", etSenha.text.toString())
                     setResult(Activity.RESULT_OK, intent)
+                    //finish()
+
+                    val intent2 = Intent(applicationContext, LoginActivity::class.java)
+                    startActivity(intent2)
                     finish()
 
                 } else {
