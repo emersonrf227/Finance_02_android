@@ -10,13 +10,12 @@ import android.view.ViewGroup
 
 import br.com.ilikeweb.emerson.R
 
-class LancamentoFragment : BaseFragment() {
-    override fun getTitulo(): Int {
-        return R.string.title_dashboard
-    }
+class LancamentoFragment : Fragment() {
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_lancamento, container, false)
     }

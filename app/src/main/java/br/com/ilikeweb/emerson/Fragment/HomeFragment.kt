@@ -10,10 +10,8 @@ import br.com.ilikeweb.emerson.MainActivity
 import br.com.ilikeweb.emerson.R
 
 
-class HomeFragment : BaseFragment() {
-    override fun getTitulo(): Int {
-        return R.string.title_home
-    }
+class HomeFragment : Fragment() {
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

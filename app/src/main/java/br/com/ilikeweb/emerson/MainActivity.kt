@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import br.com.ilikeweb.emerson.Fragment.HomeFragment
 import br.com.ilikeweb.emerson.Fragment.LancamentoFragment
 import br.com.ilikeweb.emerson.Fragment.PagamentoFragment
+import br.com.ilikeweb.emerson.Fragment.SettingFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
                return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_dashboard -> {
+            R.id.navigation_receita -> {
                 //message.setText("Aqui é o texto 2")
                 val ft = supportFragmentManager.beginTransaction()
                 val fragment = LancamentoFragment()
@@ -34,11 +35,22 @@ class MainActivity : AppCompatActivity() {
                 ft.commit()
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_notifications -> {
+            R.id.navigation_despesa -> {
                // message.setText(R.string.title_notifications)
 
                 val ft = supportFragmentManager.beginTransaction()
                 val fragment = PagamentoFragment()
+                ft.replace(R.id.container, fragment)
+                ft.addToBackStack(null)
+                ft.commit()
+                return@OnNavigationItemSelectedListener true
+            }
+
+            R.id.navigation_settings -> {
+                // message.setText(R.string.title_notifications)
+
+                val ft = supportFragmentManager.beginTransaction()
+                val fragment = SettingFragment()
                 ft.replace(R.id.container, fragment)
                 ft.addToBackStack(null)
                 ft.commit()
@@ -51,6 +63,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        getSupportActionBar()!!.hide();
 
         val ft = supportFragmentManager.beginTransaction()
         val fragment = HomeFragment()
