@@ -31,7 +31,7 @@ class CaduserActivity : AppCompatActivity() {
 
         btCadastrar.setOnClickListener {
 
-            var  txtEmail = etEmail.text.toString()
+            var txtEmail = etEmail.text.toString()
             var txtPassword = etSenha.text.toString()
             var txtNome = etNome.text.toString()
             var quantTxtPassword = txtPassword.length
