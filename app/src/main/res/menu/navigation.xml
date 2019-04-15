@@ -20,9 +20,17 @@
             android:icon="@drawable/ic_despesas_24dp"
             android:title="@string/title_despesa"/>
 
+
     <item
-            android:id="@+id/navigation_settings"
-            android:icon="@drawable/ic_notifications_black_24dp"
-            android:title="@string/title_settings"/>
+            android:id="@+id/navigation_bank"
+            android:icon="@drawable/ic_local_atm_24dp"
+            android:title="@string/title_bank"/>
+
+
+
+    <item
+            android:id="@+id/navigation_logout"
+            android:icon="@drawable/ic_power_off_24dp"
+            android:title="@string/title_logout"/>
 
 </menu>

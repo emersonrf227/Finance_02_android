@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
 
-            R.id.navigation_settings -> {
+            R.id.navigation_bank -> {
                 // message.setText(R.string.title_notifications)
 
                 val ft = supportFragmentManager.beginTransaction()
@@ -56,6 +56,20 @@ class MainActivity : AppCompatActivity() {
                 ft.commit()
                 return@OnNavigationItemSelectedListener true
             }
+
+            R.id.navigation_logout -> {
+                // message.setText(R.string.title_notifications)
+
+                val ft = supportFragmentManager.beginTransaction()
+                val fragment = SettingFragment()
+                ft.replace(R.id.container, fragment)
+                ft.addToBackStack(null)
+                ft.commit()
+                return@OnNavigationItemSelectedListener true
+            }
+
+
+
         }
         false
     }
