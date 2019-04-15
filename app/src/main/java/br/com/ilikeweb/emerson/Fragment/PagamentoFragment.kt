@@ -29,7 +29,7 @@ class PagamentoFragment : Fragment() {
         // Inflate the layout for this fragment
 
         val view = inflater.inflate(br.com.ilikeweb.emerson.R.layout.fragment_pagamento, container, false)
-        val button = view.findViewById(R.id.bt2) as Button
+        val button = view.findViewById(R.id.addDespesas) as Button
 
         button.setOnClickListener{Toast.makeText(getContext(), "Tocado", Toast.LENGTH_LONG).show()}
 
