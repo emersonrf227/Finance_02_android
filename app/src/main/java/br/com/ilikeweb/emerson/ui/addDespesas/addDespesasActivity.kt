@@ -55,8 +55,7 @@ class addDespesasActivity : AppCompatActivity() {
 
         val receita = Receitas(desc, valor, tipo, id_user)
 
-        FirebaseDatabase.getInstance().getReference("Despesa")
-            //.child(FirebaseAuth.getInstance().currentUser!!.uid)
+        FirebaseDatabase.getInstance().getReference("Despesa").child(FirebaseAuth.getInstance().currentUser!!.uid)
             .setValue(receita)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
