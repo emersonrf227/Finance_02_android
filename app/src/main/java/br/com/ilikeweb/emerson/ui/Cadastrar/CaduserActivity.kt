@@ -4,10 +4,10 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.Toast
 import br.com.ilikeweb.emerson.R
 import br.com.ilikeweb.emerson.model.Usuario
-import br.com.ilikeweb.emerson.ui.Login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_caduser.*
@@ -15,123 +15,75 @@ import kotlinx.android.synthetic.main.activity_caduser.*
 
 class CaduserActivity : AppCompatActivity() {
 
-    private lateinit var mAuth: FirebaseAuth
 
 
-
+        private lateinit var auth: FirebaseAuth
 
         override fun onCreate(savedInstanceState: Bundle?) {
+
             super.onCreate(savedInstanceState)
+
             setContentView(R.layout.activity_caduser)
 
-        mAuth = FirebaseAuth.getInstance()
+            auth = FirebaseAuth.getInstance()
+
+            btCadastrar.setOnClickListener {
+                Toast.makeText(this, "Aguarde", Toast.LENGTH_LONG).show()
+
+               // loading.visibility = View.VISIBLE
+
+                auth.createUserWithEmailAndPassword(etEmail.text.toString(), etSenha.text.toString())
+
+                    .addOnCompleteListener(this) { task ->
+
+                        Toast.makeText(this, "Aguarde", Toast.LENGTH_LONG).show()
+
+                       // loading.visibility = View.GONE
+
+                        if (task.isSuccessful) {
+
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("TAG" , "createUserWithEmail:success")
+                            saveFirestoneDatabase()
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("TAG", "createUserWithEmail:failure", task.exception)
+                            Toast.makeText(this@CaduserActivity,
+                                task.exception?.message, Toast.LENGTH_LONG).show()
+                        }
 
 
-
-
-        btCadastrar.setOnClickListener {
-
-            var txtEmail = etEmail.text.toString()
-            var txtPassword = etSenha.text.toString()
-            var txtNome = etNome.text.toString()
-            var quantTxtPassword = txtPassword.length
-
-
-            if (txtNome == "") {
-
-                Toast.makeText(this, "Campo nome em branco", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-            else if (txtEmail == "") {
-
-                Toast.makeText(this, "Campo e-mail em branco", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            } else if (txtPassword == "") {
-
-                Toast.makeText(this, "Campo password em branco", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-
-                else if (quantTxtPassword <= 8) {
-
-                Toast.makeText(this, "Seu password precisa ter acima de 8 dígitos", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-
-
-
-            else
-
-            {
-
-                createUser()
-
-            }
-
-
-        }
-
-
-    }
-
-    private fun createUser() {
-        mAuth.createUserWithEmailAndPassword(
-
-            etEmail.text.toString(), //aqui associa o usuario com a senha no firebase
-            etSenha.text.toString()  //aqui envia a senha para  o firebase
-
-
-        ).addOnCompleteListener {
-            if (it.isSuccessful) {
-
-                salvaNoRealtimeDatabase()
-
-            } else {
-
-                Toast.makeText(this@CaduserActivity,
-                    it.exception?.message,
-                    Toast.LENGTH_LONG).show()
+                    }
 
             }
         }
-    }
 
-    private fun salvaNoRealtimeDatabase() {
+        private fun saveFirestoneDatabase() {
 
-        val user = Usuario(
-            etNome.text.toString(), etEmail.text.toString())
-        FirebaseDatabase.getInstance().getReference("Usuario")
-            .child(FirebaseAuth.getInstance().currentUser!!.uid)
-            .setValue(user)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
+            val user = Usuario(etNome.text.toString(), etEmail.text.toString())
 
-                    Toast.makeText(this@CaduserActivity, "Usuário Gravado com Sucesso!",
-                        Toast.LENGTH_LONG).show()
-                    val intent = Intent()
+            FirebaseDatabase.getInstance().getReference("Usuario")
+                .child(FirebaseAuth.getInstance().currentUser!!.uid)
+                .setValue(user)
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Toast.makeText(this@CaduserActivity,
+                            "Usuário cadastrado com sucesso!",
+                            Toast.LENGTH_LONG).show()
 
-                    intent.putExtra("email", etEmail.text.toString())
-                    intent.putExtra("senha", etSenha.text.toString())
-                    setResult(Activity.RESULT_OK, intent)
-                    finish()
+                        val intent = Intent()
+                        intent.putExtra("email", etEmail.text.toString())
+                        intent.putExtra("password", etSenha.text.toString())
+                        setResult(Activity.RESULT_OK, intent)
+                        finish()
 
-                   // val intent2 = Intent(applicationContext, LoginActivity::class.java)
-                   // startActivity(intent2)
-                   // finish()
-
-                } else {
-
-                    Toast.makeText(this@CaduserActivity,
-                        it.exception?.message,
-                        Toast.LENGTH_LONG).show()
-
+                    } else {
+                        Toast.makeText(this@CaduserActivity,
+                            it.exception?.message, Toast.LENGTH_LONG).show()
+                    }
                 }
-
-
-            }
+        }
 
 
     }
-
-}
-
