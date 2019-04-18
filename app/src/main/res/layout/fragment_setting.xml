@@ -8,11 +8,14 @@
         android:background="#38c172"
         tools:context=".Fragment.HomeFragment">
     <Button
-            android:text="Entrar2"
+            android:text="Sair"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/bt3"
+            android:id="@+id/btlogout"
 
-            tools:layout_editor_absoluteY="580dp" tools:layout_editor_absoluteX="281dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

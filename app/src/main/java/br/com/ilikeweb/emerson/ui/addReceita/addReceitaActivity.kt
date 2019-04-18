@@ -49,14 +49,14 @@ class addReceitaActivity : AppCompatActivity() {
     private fun saveReceitasFirebase() {
 
         var desc = lbDescReceita.text.toString()
-        var valor = lbValReceita.text.toString()
+        var valor = lbValReceita.text.toString().toLong()
         var tipo = "R"
 
         var id_user = (FirebaseAuth.getInstance().currentUser!!.uid)
 
         val receita = Receitas(desc, valor, tipo, id_user)
 
-            FirebaseDatabase.getInstance().getReference("Receita").child(FirebaseAuth.getInstance().currentUser!!.uid)
+            FirebaseDatabase.getInstance().getReference("Lancamentos").push()
             .setValue(receita)
             .addOnCompleteListener {
                 if (it.isSuccessful) {

@@ -30,7 +30,28 @@ class CaduserActivity : AppCompatActivity() {
             btCadastrar.setOnClickListener {
                 Toast.makeText(this, "Aguarde", Toast.LENGTH_LONG).show()
 
-               // loading.visibility = View.VISIBLE
+                if (etNome.text.toString() == "") {
+
+                    Toast.makeText(this, "Campo nome em branco", Toast.LENGTH_LONG).show()
+                    return@setOnClickListener
+                }
+
+                if (etEmail.text.toString()  == "") {
+
+                    Toast.makeText(this, "Campo E-mail em branco", Toast.LENGTH_LONG).show()
+                    return@setOnClickListener
+                }
+
+                if (etSenha.text.toString()  == "") {
+
+                    Toast.makeText(this, "Campo password em branco", Toast.LENGTH_LONG).show()
+                    return@setOnClickListener
+                }
+
+
+
+
+                // loading.visibility = View.VISIBLE
 
                 auth.createUserWithEmailAndPassword(etEmail.text.toString(), etSenha.text.toString())
 

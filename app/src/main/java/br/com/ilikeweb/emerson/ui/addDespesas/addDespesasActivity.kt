@@ -48,14 +48,13 @@ class addDespesasActivity : AppCompatActivity() {
     private fun saveDespesaFirebase() {
 
         var desc = lbDescDespesa.text.toString()
-        var valor = lbValorDespesa.text.toString()
+        var valor = lbValorDespesa.text.toString().toLong()
         var tipo = "D"
-
         var id_user = (FirebaseAuth.getInstance().currentUser!!.uid)
 
         val receita = Receitas(desc, valor, tipo, id_user)
 
-        FirebaseDatabase.getInstance().getReference("Despesa").child(FirebaseAuth.getInstance().currentUser!!.uid)
+        FirebaseDatabase.getInstance().getReference("Lancamentos").push()
             .setValue(receita)
             .addOnCompleteListener {
                 if (it.isSuccessful) {

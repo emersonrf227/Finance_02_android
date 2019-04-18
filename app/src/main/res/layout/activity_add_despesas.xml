@@ -67,7 +67,7 @@
     <EditText
             android:layout_width="263dp"
             android:layout_height="40dp"
-            android:inputType="textPersonName"
+            android:inputType="numberDecimal"
             android:background="#fff"
             android:ems="10"
             android:id="@+id/lbValorDespesa"
