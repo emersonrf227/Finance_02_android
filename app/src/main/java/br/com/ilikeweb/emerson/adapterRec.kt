@@ -27,8 +27,8 @@ class adapterRec(private val dataList: ArrayList<Receitas>,private val context: 
     }
 
     override fun onBindViewHolder(holder: AtividadeViewHolder, position: Int) {
-        holder.lbDesc!!.text = dataList[position].descricao!!
-        holder.lbValor!!.text = dataList[position].valor!!
+        holder.txtLbdesc!!.text = dataList[position].descricao!!
+        holder.txtLbValor!!.setText(dataList[position].valor!!.toString())
 
 
     }
