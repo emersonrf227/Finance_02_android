@@ -4,10 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
-import br.com.ilikeweb.emerson.Fragment.HomeFragment
-import br.com.ilikeweb.emerson.Fragment.LancamentoFragment
-import br.com.ilikeweb.emerson.Fragment.PagamentoFragment
-import br.com.ilikeweb.emerson.Fragment.SettingFragment
+import br.com.ilikeweb.emerson.Fragment.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -50,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                 // message.setText(R.string.title_notifications)
 
                 val ft = supportFragmentManager.beginTransaction()
-                val fragment = SettingFragment()
+                val fragment = MapsFragment()
                 ft.replace(R.id.container, fragment)
                 ft.addToBackStack(null)
                 ft.commit()
