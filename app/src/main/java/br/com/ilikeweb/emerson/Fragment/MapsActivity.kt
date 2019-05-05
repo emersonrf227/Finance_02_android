@@ -1,7 +1,5 @@
 package br.com.ilikeweb.emerson.Fragment
 
-import android.content.Intent
-import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import br.com.ilikeweb.emerson.R
@@ -17,28 +15,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
 
-
-
-    fun  BuscarBanco() {
-        val query = "Banco 24 Horas"
-        val geo = "geo:0,0?q=$query"
-
-        exibirNoMapa(geo)
-
-    }
-
-    fun exibirNoMapa(geo: String) {
-        val geoURI = Uri.parse(geo)
-        val intent = Intent(Intent.ACTION_VIEW, geoURI)
-        intent.setPackage("com.google.android.apps.maps")
-        startActivity(intent)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
-
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -55,8 +34,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * installed Google Play services and returned to the app.
      */
     override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
 
-        BuscarBanco()
-
+        // Add a marker in Sydney and move the camera
+        val sydney = LatLng(-34.0, 151.0)
+        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
+
+
 }
